@@ -12,6 +12,10 @@
 <body>
 
     <main class="content-main">
+        <!-- overlay -->
+        <div class="overlay"></div>
+        <!-- overlay -->
+
         <!-- product list -->
         <section class="section-productlist">
             <div class="container container-productlist">
@@ -26,19 +30,81 @@
         </section>
         <!-- product list -->
 
-        <!-- product cart -->
+        <!-- product in cart -->
         <section class="section-cart">
             <div class="container container-cart">
-                <div class="section-cart--counter">
-                    <span class="counter">Your Cart (0)</span>
-                </div>
-                <div class="section-cart--illustrationcart">
-                    <img src="./assets/images/illustration-empty-cart.svg" alt="">
-                    <h3>Your added items will appear here</h3>
+                <div class="cart-withproduct">
+                    <div class="section-cart--counter">
+                        <span class="counter">Your Cart (0)</span>
+                    </div>
+                    
+                    <div class="section-cart--illustrationcart">
+                        <div class="cart-empty">
+                            <div class="section-cart--illustrationcart">
+                                <img src="./assets/images/illustration-empty-cart.svg" alt="">
+                                <h3>Your added items will appear here</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-ordertotal">
+                        <p>Order Total</p>
+                        <h3>$46.50</h3>
+                    </div>
+                    <div class="cart-carbon-neutral">
+                        <img src="./assets/images/icon-carbon-neutral.svg" alt="">
+                        <p>This is a <strong>carbon neutral</strong> delivery</p>
+                    </div>
+                    <button type="button" class="btn-confirm">Confirm Order</button>
                 </div>
             </div>
         </section>
         <!-- product cart -->
+
+        <!-- confirmed order -->
+        <section class="section-orderconfirmed">
+            <div class="container container-orderconfirmed">
+                <img src="./assets/images/icon-order-confirmed.svg" class="icon-order-confirmed" alt="">
+                <div class="header-info">
+                    <h2>Order Confirmed</h2>
+                    <p>We hope you enjoy your food!</p>
+                </div>
+                <div class="list-orderconfirmed">
+                    <div class="list-cardorderconfirmed">
+                        <img src="./assets/images/image-baklava-thumbnail.jpg" alt="">
+                        <div class="info">
+                            <h4>Classic Tiramisu</h4>
+                            <span>1x</span>
+                            <span>@$5.50</span>
+                        </div>
+                        <h3 class="price">$5.50</h3>
+                    </div>
+                    <div class="list-cardorderconfirmed">
+                        <img src="./assets/images/image-baklava-thumbnail.jpg" alt="">
+                        <div class="info">
+                            <h4>Classic Tiramisu</h4>
+                            <span>1x</span>
+                            <span>@$5.50</span>
+                        </div>
+                        <h3 class="price">$5.50</h3>
+                    </div>
+                    <div class="list-cardorderconfirmed">
+                        <img src="./assets/images/image-baklava-thumbnail.jpg" alt="">
+                        <div class="info">
+                            <h4>Classic Tiramisu</h4>
+                            <span>1x</span>
+                            <span>@$5.50</span>
+                        </div>
+                        <h3 class="price">$5.50</h3>
+                    </div>
+                    <div class="cart-ordertotal">
+                        <p>Order Total</p>
+                        <h3>$46.50</h3>
+                    </div>
+                </div>
+                <button type="button" class="btn-neworder">Start New Order</button>
+            </div>
+        </section>
+        <!-- confirmed order -->
     </main>
 
     <script src="script.js"></script>

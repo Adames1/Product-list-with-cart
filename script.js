@@ -1,10 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   const productData = "./products.json";
 
+  // variables
   const productList = document.querySelector(".product-list");
+  const cartContainer = document.querySelector(
+    ".section-cart--illustrationcart"
+  );
+  const containerOrderTotal = document.querySelector(".cart-ordertotal");
+  const orderTotalValue = document.querySelector(".cart-ordertotal h3");
+  const carbonNeutral = document.querySelector(".cart-carbon-neutral");
+  const buttonConfirm = document.querySelector(".btn-confirm");
 
+  const overlay = document.querySelector(".overlay");
+  const orderConfirmed = document.querySelector(".section-orderconfirmed");
+
+  // array empty
   let inCart = [];
 
+  // get all products of json
   async function getProducts() {
     try {
       const res = await fetch(productData);
@@ -19,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // render list product
   async function productListUi() {
     let products = await getProducts();
 
@@ -61,7 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const product = products.find((p) => p.id === productId);
 
         if (product) {
-          inCart.push(product);
+          let cartItem = inCart.find((item) => item.id === productId);
+          if (!cartItem) {
+            inCart.push({ ...product, quantity: 1 });
+          } else {
+            cartItem.quantity++;
+          }
 
           const parent = this.closest(".productlist-card");
           const images = parent.querySelectorAll(".img-product");
@@ -83,16 +102,73 @@ document.addEventListener("DOMContentLoaded", () => {
             if (quantity > 0) {
               quantity--;
               counter.textContent = quantity;
+              updateCart(productId, quantity);
+              sumOrderTotal();
             }
           });
 
           btnMore.addEventListener("click", () => {
             quantity++;
             counter.textContent = quantity;
+            updateCart(productId, quantity);
+            sumOrderTotal();
           });
+
+          renderCart();
+
+          containerOrderTotal.style.display = "flex";
+          carbonNeutral.style.display = "flex";
+          buttonConfirm.style.display = "block";
+
+          sumOrderTotal();
         }
       });
     });
+  }
+
+  // cart items in the DOM
+  function renderCart() {
+    cartContainer.innerHTML = "";
+
+    inCart.forEach((item) => {
+      cartContainer.innerHTML += `
+      <div class="cart-product" data-id={${item.id}}>
+          <div>
+              <h2>${item.description}</h2>
+              <div class="cart-balance">
+                  <span>${item.quantity}x</span>
+                  <span>@$${item.price}</span>
+                  <span>$${(item.quantity * item.price).toFixed(2)}</span>
+              </div>
+          </div>
+          <button type="button" title="Delete product" class="btn-deleteproduct">
+              <img src="./assets/images/icon-remove-item.svg" alt="">
+          </button>
+      </div>
+      `;
+    });
+  }
+
+  // Update the quantity in the cart
+  function updateCart(productId, quantity) {
+    const cartItem = inCart.find((item) => item.id === productId);
+    if (cartItem) {
+      if (quantity === 0) {
+        inCart = inCart.filter((item) => item.id !== productId); // Remove item if quantity is 0
+      } else {
+        cartItem.quantity = quantity; // Update quantity
+      }
+      renderCart(); // Update cart display
+    }
+  }
+
+  function sumOrderTotal() {
+    const initialValue = 0;
+    const sumPriceProduct = inCart.reduce((accumulator, item) => {
+      return accumulator + item.price * item.quantity;
+    }, initialValue);
+
+    orderTotalValue.textContent = `$${sumPriceProduct.toFixed(2)}`;
   }
 
   // show button ui with click
@@ -116,6 +192,13 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       `;
     }
+  }
+
+  if (buttonConfirm) {
+    buttonConfirm.addEventListener("click", () => {
+      overlay.classList.add("is-active");
+      orderConfirmed.classList.add("is-active");
+    });
   }
 
   getProducts();
