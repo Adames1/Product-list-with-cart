@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Font */
+  --font-family: "Red Hat Text", serif;
+
+  /* Colors */
+  --color-red: hsl(14, 86%, 42%);
+  --color-green: hsl(159, 69%, 38%);
+
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);
+
+  /* Background and text */
+  --background-color: var(--rose-50);
+  --text-color: var(--rose-900);
+
+  /* Font size */
+  --font-size-xs: 0.875rem; /* 14px - Tamaño mínimo legible en móvil */
+  --font-size-sm: 1rem; /* 16px - Tamaño base recomendado para cuerpo de texto */
+  --font-size-md: 1.125rem; /* 18px - Para títulos pequeños */
+  --font-size-lg: 1.375rem; /* 22px - Para subtítulos o encabezados secundarios */
+  --font-size-xl: 1.75rem; /* 28px - Encabezados principales */
+  --font-size-xxl: 2.25rem; /* 36px - Títulos destacados */
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Transitions */
+  --transition: 0.3s ease;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.5;
+  font-family: var(--font-family);
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* general styles */
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: var(--spacing-md);
+}
+
+/* content main */
+.content-main {
+  width: 100%;
+  height: 100%;
+}
+
+header .productlist-title {
+  font-size: var(--font-size-xxl);
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.product-list {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.productlist-card--img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.productlist-card--img .img-product {
+  border-radius: 12px;
+}
+
+.productlist-card--img .btn-addcart {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: max-content;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  background-color: var(--background-color);
+  border: 1.5px solid var(--rose-500);
+  transform: translateX(-50%);
+  padding: 9px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.productlist-card--img .btn-addcart .icon-addcart {
+  width: 25px;
+}
+
+.productlist-card--img .btn-addcart span {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.img-desktop,
+.img-tablet {
+  display: none;
+}
+
+.productlist-card--info {
+  margin-top: var(--spacing-lg);
+}
+
+.productlist-card--info .productlist-name {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--rose-400);
+}
+
+.productlist-card--info .productlist-description {
+  font-size: var(--font-size-md);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.productlist-card--info .productlist-price {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-red);
+}
