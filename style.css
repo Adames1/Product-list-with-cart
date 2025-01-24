@@ -437,6 +437,10 @@ header .productlist-title {
   border-radius: 10px;
 }
 
+.list-cardorderconfirmed .info {
+  width: 100%;
+}
+
 .list-cardorderconfirmed .info h4 {
   font-size: var(--font-size-sm);
   margin-bottom: var(--spacing-xs);
@@ -450,6 +454,13 @@ header .productlist-title {
 .price {
   font-weight: 700;
   color: #5c5c5c;
+}
+
+.cart-ordertotalConfirmed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) 0;
 }
 
 .btn-neworder {
@@ -557,10 +568,6 @@ header .productlist-title {
   .section-orderconfirmed.is-active {
     display: inline-block;
     transform: translate(-50%, 50%);
-  }
-
-  .list-cardorderconfirmed img {
-    margin-right: -9rem;
   }
 }
 
