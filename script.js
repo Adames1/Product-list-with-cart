@@ -182,10 +182,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // remove item product of cart
-  function removeItemOfCart(id) {
+  function removeItemOfCart(images, id) {
     productInCart = productInCart.filter((item) => item.id !== id);
+
     renderCart();
     updateCartCounter();
+    orderTotal();
   }
 
   function updateQuantityCart(id, quantity) {
