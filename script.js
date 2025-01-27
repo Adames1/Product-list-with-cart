@@ -182,8 +182,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // remove item product of cart
-  function removeItemOfCart(images, id) {
+  function removeItemOfCart(id) {
     productInCart = productInCart.filter((item) => item.id !== id);
+
+    const productElement = document.querySelector(
+      `.productlist-card[data-id="${id}"]`
+    );
+    // Remove selection class from images
+    if (productElement) {
+      const imageProductElement = document.querySelectorAll(".img-product");
+      imageProductElement.forEach((img) =>
+        img.classList.remove("select-product")
+      );
+
+      const buttonContainer = productElement.querySelector(".button");
+      if (buttonContainer) {
+        buttonContainer.outerHTML = renderButtonProduct("btn-addcart", id);
+      }
+    }
 
     renderCart();
     updateCartCounter();
